@@ -1,0 +1,60 @@
+
+
+Sub Stock_Data_2016()
+
+Dim ws2 As Worksheet
+Set ws2 = Worksheets("Data")
+
+Worksheets("Data").Range("A1").Value = "Ticker"
+Worksheets("Data").Range("B1").Value = "Change In Stock"
+Worksheets("Data").Range("C1").Value = "% of Change"
+Worksheets("Data").Range("D1").Value = "Avrg. Daily Change"
+Worksheets("Data").Range("E1").Value = "Total Volume"
+Worksheets("Data").Range("G2").Value = "Total Shares"
+Worksheets("Data").Range("G5").Value = "Greatest % Increase"
+Worksheets("Data").Range("G8").Value = "Greatest % Decrease"
+Worksheets("Data").Range("G10").Value = "Greatest Avg. Change"
+Worksheets("Data").Range("I1").Value = "Ticker"
+
+Dim Ticker_name As Long
+Dim i As Long
+Dim Ticker_Change As Single
+Dim Per_Ticker_Change As Single
+Dim Ticker_Daily_Change As Single
+Dim Ticker_Avrg_Change As Single
+
+
+
+
+
+RowCount = Cells(Rows.Count, "A").End(xlUp).Row
+i = 0
+
+
+For i = 2 To RowCount
+    If Cells(i + 1, 1).Value <> Cells(i, 1).Value Then
+
+   Ticker_name = Cells(i, 1).Value
+   
+   Ticker_total = Ticker_total + Cells(i, 3).Value
+
+   Range("I" & Summary_Table_Row).Value = Ticker_name
+
+   Range("J" & Summary_Table_Row).Value = Ticker_total
+
+   Summary_Table_Row = Summary_Table_Row + 1
+
+   Ticker_total = 0
+
+Else
+    
+    Ticker_total = Ticker_total + Cells(1, 3).Value
+
+
+    
+    End If
+
+Next i
+
+
+End Sub
